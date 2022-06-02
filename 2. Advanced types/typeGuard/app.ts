@@ -15,16 +15,16 @@ interface AdminB {
     role: number;
 }
 
+function isString(x: string | number): x is string {
+    return typeof id === "string";
+}
+
 function logId(id: string | number) {
     if (isString(id)) {
         console.log(id);
     } else {
         console.log(id);
     }
-}
-
-function isString(x: string | number): x is string {
-    return typeof id === "string";
 }
 
 function isAdmin(user: UserB | AdminB): user is AdminB {
