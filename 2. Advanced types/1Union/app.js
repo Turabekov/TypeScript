@@ -1,5 +1,5 @@
 "use strict";
-function logId(id) {
+function logId1(id) {
     if (typeof id === "string") {
         console.log(id);
     }
