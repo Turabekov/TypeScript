@@ -25,9 +25,26 @@ interface IResponseSucces {
     data: IDataSucces;
 }
 
-interface ResponseFailed {
+interface IResponseFailed {
     status: PaymentStatus.Failed;
     data: IDataFailed;
 }
 
-// function get(): IResponseSucces | ResponseFailed {}
+type f = (res: IResponseSucces | IResponseFailed) => number;
+
+type Res = IResponseSucces | IResponseFailed;
+
+function isSucces(res: Res): res is IResponseSucces {
+    if (res.status === PaymentStatus.Succes) {
+        return true;
+    }
+    return false;
+}
+
+function getIdFromData(res: Res): number {
+    if (isSucces(res)) {
+        return res.data.databaseId;
+    } else {
+        throw new Error(res.data.errorMessage);
+    }
+}
